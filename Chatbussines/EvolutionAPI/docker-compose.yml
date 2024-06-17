@@ -1,0 +1,50 @@
+version: '3.2'
+
+services:
+  api:
+    container_name: evolution_api
+    image: evolution/api:local
+    build: .
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - evolution_instances:/evolution/instances
+      - evolution_store:/evolution/store
+    networks:
+      - chatwoot_default
+    env_file:
+      - ./Docker/.env
+    command: ['node', './dist/src/main.js']
+    expose:
+      - 8080
+
+volumes:
+  evolution_instances:
+  evolution_store:
+
+networks:
+  chatwoot_default:
+
+
+B6D711FCDE4D4FD5936544120E713976
+
+http://192.168.5.89:8080/chatwoot/webhook/Bussines
+
+
+
+//~
+curl -X POST http://192.168.5.89:8080/instance/create
+-H "apikey: B6D711FCDE4D4FD5936544120E713976"
+-H "Content-Type: application/json"
+-d '{"instanceName": "ChatBussines",
+"token": "",
+"qrcode": true,
+"chatwoot_accont_id": 1,
+"chatwoot_token": "HahkFiAZFuaaQTGpNq4fWBta",
+"chatwoot_url": "192.168.5.89:3000",
+"chatwoot_sing_msg": true
+}'
+
+~//
+
